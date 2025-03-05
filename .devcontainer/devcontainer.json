@@ -1,0 +1,18 @@
+{
+    "name": "OS-labs",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "extensions": [
+        "ms-vscode.cpptools",
+        "vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    // Обновляем еще разок пакеты и превентивно решаем проблемы с гитом (в докере мы можем восприниматься как ненадежный пользователь)
+    "postCreateCommand": "apt-get update && apt-get install -y cmake && git config --global --add safe.directory '*'",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind"
+    ]
+}
